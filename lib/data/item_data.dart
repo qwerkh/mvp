@@ -22,8 +22,10 @@ class ItemData implements ItemRepository {
   @override
   Future<int> saveItem(Item item) async {
     var _dbClient = await dbClass.db;
+    print(item.name);
+    print("Need To Insert");
     var res = await _dbClient.rawInsert(
-        "INSERT INTO Item (name,code,cost,rePrice,whPrice) VALUES(${item.name.toString()},${item.code.toString()},${item.cost},${item.rePrice},${item.whPrice})");
+        "INSERT INTO Item (name,code,cost,rePrice,whPrice) VALUES('${item.name.toString()}','${item.code.toString()}',${item.cost},${item.rePrice},${item.whPrice})");
     print("Insert Success");
     return res;
   }

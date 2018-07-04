@@ -31,8 +31,11 @@ class ItemState extends State<ItemPage> implements ItemContract {
   }
 
   void _addItem() {
-    Item item = new Item("001","Test3", "uu2", 200, 400, 900);
-    _itemData.saveItem(item).then((d) => print(d)).catchError((e) => print(e));
+    Item item = new Item("001", "Test3", "uu2", 200, 400, 900);
+    _itemData
+        .saveItem(item)
+        .then((d) => _presenter.loadItem())
+        .catchError((e) => print(e));
   }
 
   @override
@@ -45,7 +48,8 @@ class ItemState extends State<ItemPage> implements ItemContract {
           ? new Center(child: new CircularProgressIndicator())
           : _itemWidget(),
       floatingActionButton: new FloatingActionButton(
-        onPressed: _addItem,
+        //onPressed: _addItem,
+        onPressed: _onPressed,
         child: new Icon(Icons.add),
       ),
     );
@@ -60,7 +64,14 @@ class ItemState extends State<ItemPage> implements ItemContract {
               itemCount: _item.length,
               itemBuilder: (BuildContext context, int index) {
                 final Item item = _item[index];
-                return _getListItemUi(item);
+                return new Column(
+                  children: <Widget>[
+                    new Divider(
+                      height: 10.0,
+                    ),
+                    _getListItemUi(item)
+                  ],
+                );
               },
             ),
           )
@@ -74,11 +85,21 @@ class ItemState extends State<ItemPage> implements ItemContract {
       leading: new CircleAvatar(
         child: new Text(item.name[0]),
       ),
-      title: new Text(
-        item.name,
-        style: new TextStyle(fontWeight: FontWeight.bold),
+      title: new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          new Text(
+            item.name,
+            style: new TextStyle(fontWeight: FontWeight.bold),
+          ),
+          new Text(
+            item.whPrice.toString(),
+            style: new TextStyle(color: Colors.grey, fontSize: 14.0),
+          ),
+        ],
       ),
       subtitle: new Text(item.rePrice.toString()),
+      onLongPress: null,
     );
   }
 
@@ -92,6 +113,11 @@ class ItemState extends State<ItemPage> implements ItemContract {
     setState(() {
       _item = item;
       _isLoading = false;
+      print("Looad Success");
     });
+  }
+
+  void _onPressed() {
+    Navigator.of(context).pushNamed("/itemForm");
   }
 }

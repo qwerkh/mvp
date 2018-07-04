@@ -22,7 +22,7 @@ class DatabaseHelper {
   DatabaseHelper.internal();
   initDb() async {
     io.Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, "test4.db");
+    String path = join(documentDirectory.path, "test5.db");
     print("Want Create db");
     var ourDb = await openDatabase(path, version: 1, onCreate: _onCreate);
     print(ourDb);
