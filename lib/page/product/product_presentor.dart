@@ -1,4 +1,3 @@
-
 import 'package:coremvp/dependency_injection.dart';
 import 'package:coremvp/modules/product.dart';
 

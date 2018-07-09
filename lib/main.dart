@@ -51,7 +51,7 @@ class MyAppState extends State<MyApp> {
           // "hot reload" (press "r" in the console where you ran "flutter run",
           // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
           // counter didn't reset back to zero; the application is not restarted.
-
+          
           primarySwatch: Colors.blue,
           primaryColor: defaultTargetPlatform == TargetPlatform.iOS
               ? Colors.grey[100]
@@ -171,7 +171,9 @@ class TabsState extends State<Tabs> {
           new _secondTab.Dashboard(),
           new _thirdTab.Settings()
         ],
+        
       ),
+    
 
       //Tabs
       bottomNavigationBar: Theme.of(context).platform == TargetPlatform.iOS
@@ -189,10 +191,12 @@ class TabsState extends State<Tabs> {
           : new BottomNavigationBar(
               currentIndex: _tab,
               onTap: onTap,
+              
               items: TabItems.map((TabItem) {
                 return new BottomNavigationBarItem(
                   title: new Text(TabItem.title),
                   icon: new Icon(TabItem.icon),
+            
                 );
               }).toList(),
             ),

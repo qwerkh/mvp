@@ -11,17 +11,22 @@ class Product {
   Product.fromMap(Map<String, dynamic> map)
       : name = map['name'],
         code = map['code'],
-        cost = map['cost'],
-        rePrice = map['rePrice'],
-        whPrice = map['whPrice'];
+        cost = double.parse(
+            map['cost'].toString() == "null" ? "0" : map['cost'].toString()),
+        rePrice = double.parse(
+            map['rePrice'].toString() == "null" ? "0" : map['rePrice'].toString()),
+        whPrice = double.parse(
+            map['whPrice'].toString() == "null" ? "0" : map['whPrice'].toString());
 
   Map<String, dynamic> toMap() {
     var _map = new Map<String, dynamic>();
     _map["name"] = name;
     _map["code"] = code;
-    _map["cost"] = cost;
-    _map["rePrice"] = rePrice;
-    _map["whPrice"] = whPrice;
+    _map["cost"] = double.parse(cost.toString() == "null" ? "0" : cost.toString());
+    _map["rePrice"] =
+        double.parse(rePrice.toString() == "null" ? "0" : rePrice.toString());
+    _map["whPrice"] =
+        double.parse(whPrice.toString() == "null" ? "0" : whPrice.toString());
     return _map;
   }
 }

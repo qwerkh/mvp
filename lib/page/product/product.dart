@@ -1,4 +1,3 @@
-
 import 'package:coremvp/modules/product.dart';
 import 'package:coremvp/page/product/product_presentor.dart';
 import 'package:flutter/foundation.dart';
@@ -45,7 +44,7 @@ class ProductState extends State<ProductPage>
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
-            new DrawerHeader( 
+            new DrawerHeader(
               child: new Text('Drawer Header'),
               decoration: new BoxDecoration(
                 color: Colors.blue,
@@ -98,10 +97,11 @@ class ProductState extends State<ProductPage>
     return new ListTile(
       leading: new CircleAvatar(
         backgroundColor: color,
-        child: new Text(product.name[0]),
+        child: new Text(product.name[0].toString()),
       ),
       title: new Text(product.name,
-          style: new TextStyle(fontWeight: FontWeight.bold)),
+          style:
+              new TextStyle(fontWeight: FontWeight.bold, fontFamily: "osSys")),
       subtitle: _getSubTitleText(product.cost),
       isThreeLine: true,
     );
